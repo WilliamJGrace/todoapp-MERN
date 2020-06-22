@@ -44,3 +44,6 @@ createTodoItem = (req, res) => {
 }
 
 
+module.exports = {
+    createTodoItem
+}
