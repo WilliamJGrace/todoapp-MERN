@@ -5,6 +5,6 @@ const TodoItemCtrl = require('../controllers/todoitem-ctrl')
 
 const router = express.Router()
 
-router.post('/todoitem', MovieCtrl.createTodoItem)
+router.post('/todoitem', TodoItemCtrl.createTodoItem)
 
 module.exports = router
