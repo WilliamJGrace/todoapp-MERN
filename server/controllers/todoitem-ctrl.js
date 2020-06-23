@@ -54,6 +54,7 @@ updateTodoItem = async (req, res) => {
         })
     }
 
+
     TodoItem.findOne({ _id: req.params.id }, (err, todoItem) => {
         if (err) {
             return res.status(404).json({
@@ -61,6 +62,7 @@ updateTodoItem = async (req, res) => {
                 message: 'TodoItem Not Found!'
             })
         }
+     
         todoItem.name = body.name
         todoItem.isCompleted = body.isCompleted
         todoItem
@@ -68,8 +70,14 @@ updateTodoItem = async (req, res) => {
             .then(() => {
                 return res.status(200).json({
                     success: true,
-                    id: todoitem._id,
+                    id: todoItem._id,
                     message: 'Todoitem updated!'
+                })
+            })
+            .catch(error => {
+                return res.status(404).json({
+                    error,
+                    message: 'todoitem not updated!',
                 })
             })
     } )
@@ -77,5 +85,6 @@ updateTodoItem = async (req, res) => {
 
 
 module.exports = {
-    createTodoItem
+    createTodoItem,
+    updateTodoItem
 }
