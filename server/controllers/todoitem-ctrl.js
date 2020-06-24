@@ -83,8 +83,68 @@ updateTodoItem = async (req, res) => {
     } )
 }
 
+getTodoItemById = async (req, res) => {
+    await TodoItem.findOne({ _id: req.params.id }, (err, todoItem) => {
+        if (err){
+            return res.status(400).json({
+                success: false,
+                error: err
+            })
+        }
+        if (!todoItem) {
+            return res.status(404).json({
+                success: false, error: 'Todoitem not found'
+            })
+        }
+        return res.status(200).json({ success: true, data: todoItem })
+    }).catch(err => console.log(err))
+}
+
+deleteTodoItem = async (req, res) => {
+    await TodoItem.findOneAndDelete({_id: req.params.id }, (err, todoItem) => {
+        if (err){
+            return res.status(400).json({
+                success: false,
+                error: err
+            })
+        }
+
+        if (!todoItem) {
+            return res.status(404).json({
+                success: false, error: 'Todoitem not found'
+            })
+        }
+        return res.status(200).json({ success: true, data: todoItem })
+
+
+
+    }).catch(err => {console.log(err)})
+}
+
+getTodoItems = async (req, res) => {
+    await TodoItem.find({}, (err, todoItems) => {
+        if (err){
+            return res.status(400).json({
+                success: false,
+                error: err
+            })
+        }
+
+        if (!todoItems.length) {
+            return res.status(404).json({
+                success: false, error: 'Todoitems not found'
+            })
+        }
+        return res.status(200).json({ success: true, data: todoItems })
+
+    }).catch(err => {console.log(err)})
+}
 
 module.exports = {
     createTodoItem,
-    updateTodoItem
+    updateTodoItem,
+    getTodoItemById,
+    deleteTodoItem,
+    getTodoItems
+
 }
