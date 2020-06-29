@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 
-function TodoItem ({ todoItem, index, completeTodoItem, uncompleteTodoItem }) {
+function TodoItem ({ todoItem, index, completeTodoItem, uncompleteTodoItem, deleteTodoItem }) {
   return (
   <div 
   className="todo"
@@ -16,6 +16,9 @@ function TodoItem ({ todoItem, index, completeTodoItem, uncompleteTodoItem }) {
 </div>
 
   }
+  <div>
+  <button onClick={() => deleteTodoItem(index)}>X</button>
+  </div>
   </div>
   )
 } 
@@ -88,6 +91,14 @@ function App() {
   fetch(`http://localhost:3000/api/todoitem/${id}`, requestOptions)
   }
 
+  const deleteTodoItem = index => {
+    const id = todoItems[index]._id
+    const requestOptions = {
+      method: 'DELETE',
+  };
+  fetch(`http://localhost:3000/api/todoitem/${id}`, requestOptions)
+  }
+
   return (
     <div className="app">
       <div className="todo-list">
@@ -98,6 +109,7 @@ function App() {
             todoItem={todoItem}
             completeTodoItem={completeTodoItem}
             uncompleteTodoItem={uncompleteTodoItem}
+            deleteTodoItem={deleteTodoItem}
           />
         ))}
         <TodoForm addTodoItem={addTodoItem} />
