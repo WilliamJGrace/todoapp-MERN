@@ -1,3 +1,8 @@
-Oh wow, another to do app
+## Oh wow, another to do app!
 
-A Basic Todo App to practise MERN
+A Basic Todo App using MongoDB, Express, React and Node.js
+
+
+
+
+
