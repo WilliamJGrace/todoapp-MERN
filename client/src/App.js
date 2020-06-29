@@ -50,14 +50,21 @@ function TodoForm({ addTodoItem }) {
 
 function App() {
   const [todoItems, setTodoItems] = useState(
-    []
+    null
   )
-  useEffect(() => {
+
+  const fetchTodoItems= () => {
     fetch("http://localhost:3000/api/todoitems")
-      .then(res => res.json())
-      .then(data =>{
-        setTodoItems(data.data)
-      }) 
+    .then(res => res.json())
+    .then(data =>{
+      setTodoItems(data.data)
+      console.log("call")
+    }) 
+  }
+  useEffect(() => {
+    if(!todoItems){
+      fetchTodoItems()
+    }
   })
 
   const addTodoItem = value => {
@@ -67,6 +74,10 @@ function App() {
       body: JSON.stringify({ name: value })
   };
   fetch("http://localhost:3000/api/todoitem", requestOptions)
+  .then(() => {
+    fetchTodoItems()
+  }
+  )
   }
 
   const completeTodoItem = index => {
@@ -78,6 +89,11 @@ function App() {
       body: JSON.stringify({ name: name, isCompleted: true })
   };
   fetch(`http://localhost:3000/api/todoitem/${id}`, requestOptions)
+  .then(
+    () => {
+      fetchTodoItems()
+    }
+  )
   }
 
   const uncompleteTodoItem = index => {
@@ -89,6 +105,12 @@ function App() {
       body: JSON.stringify({ name: name, isCompleted: false })
   };
   fetch(`http://localhost:3000/api/todoitem/${id}`, requestOptions)
+  .then(
+    () => {
+      fetchTodoItems()
+    }
+  )
+  
   }
 
   const deleteTodoItem = index => {
@@ -97,12 +119,18 @@ function App() {
       method: 'DELETE',
   };
   fetch(`http://localhost:3000/api/todoitem/${id}`, requestOptions)
+  .then(
+    () => {
+      fetchTodoItems()
+    }
+  )
   }
 
   return (
     <div className="app">
       <div className="todo-list">
-        {todoItems.map((todoItem, index) => (
+        {todoItems ?
+        todoItems.map((todoItem, index) => (
           <TodoItem
             key={index}
             index={index}
@@ -111,7 +139,11 @@ function App() {
             uncompleteTodoItem={uncompleteTodoItem}
             deleteTodoItem={deleteTodoItem}
           />
-        ))}
+        ))
+        :
+        null
+        
+      }
         <TodoForm addTodoItem={addTodoItem} />
       </div>
     </div>
