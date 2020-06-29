@@ -1,7 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 
-const TodoItem = ({ todoItem }) => <div className="todo">{todoItem.name}</div>;
+function TodoItem ({ todoItem, index, completeTodoItem }) {
+  return (
+  <div 
+  className="todo"
+  style={{ textDecoration: todoItem.isCompleted ? "line-through" : "" }}
+  >{todoItem.name}
+  <div>
+    <button onClick={() => completeTodoItem(index)}>Complete</button>
+  </div>
+  </div>
+  )
+} 
 
 
 
@@ -13,15 +24,7 @@ function TodoForm({ addTodoItem }) {
   const handleSubmit = event => {
     event.preventDefault();
     if(!value) return;
-    // addTodoItem(value)
-    const requestOptions = {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name: value })
-  };
-  fetch("http://localhost:3000/api/todoitem", requestOptions)
-  .then(response => response.json())
-  // .then(data => add(data.id));
+    addTodoItem(value)
     setValue("")
   }
   return (
@@ -48,9 +51,24 @@ function App() {
       }) 
   })
 
-  const addTodoItem = name => {
-    const newTodoItems = [...todoItems, { name }];
-    setTodoItems(newTodoItems)
+  const addTodoItem = value => {
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: value })
+  };
+  fetch("http://localhost:3000/api/todoitem", requestOptions)
+  }
+
+  const completeTodoItem = index => {
+    const id = todoItems[index]._id
+    const name = todoItems[index].name
+    const requestOptions = {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: name, isCompleted: true })
+  };
+  fetch(`http://localhost:3000/api/todoitem/${id}`, requestOptions)
   }
 
   return (
@@ -61,6 +79,7 @@ function App() {
             key={index}
             index={index}
             todoItem={todoItem}
+            completeTodoItem={completeTodoItem}
           />
         ))}
         <TodoForm addTodoItem={addTodoItem} />
