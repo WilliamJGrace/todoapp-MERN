@@ -1,15 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 
-function TodoItem ({ todoItem, index, completeTodoItem }) {
+function TodoItem ({ todoItem, index, completeTodoItem, uncompleteTodoItem }) {
   return (
   <div 
   className="todo"
   style={{ textDecoration: todoItem.isCompleted ? "line-through" : "" }}
   >{todoItem.name}
+  {todoItem.isCompleted ?
   <div>
-    <button onClick={() => completeTodoItem(index)}>Complete</button>
-  </div>
+    <button onClick={() => uncompleteTodoItem(index)}>UnComplete</button>
+  </div> :
+  <div>
+  <button onClick={() => completeTodoItem(index)}>Complete</button>
+</div>
+
+  }
   </div>
   )
 } 
@@ -71,6 +77,17 @@ function App() {
   fetch(`http://localhost:3000/api/todoitem/${id}`, requestOptions)
   }
 
+  const uncompleteTodoItem = index => {
+    const id = todoItems[index]._id
+    const name = todoItems[index].name
+    const requestOptions = {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: name, isCompleted: false })
+  };
+  fetch(`http://localhost:3000/api/todoitem/${id}`, requestOptions)
+  }
+
   return (
     <div className="app">
       <div className="todo-list">
@@ -80,6 +97,7 @@ function App() {
             index={index}
             todoItem={todoItem}
             completeTodoItem={completeTodoItem}
+            uncompleteTodoItem={uncompleteTodoItem}
           />
         ))}
         <TodoForm addTodoItem={addTodoItem} />
