@@ -1,7 +1,10 @@
+require('dotenv').config();
+  
 const mongoose = require('mongoose')
 
+
 mongoose
-    .connect('mongodb://127.0.0.1:27017/todoapp', { useNewUrlParser: true })
+    .connect('mongodb+srv://' + process.env.MONGODB_USERNAME + ':' + process.env.MONGODB_PASSWORD + '@cluster0.obclx.mongodb.net/todoapp?retryWrites=true&w=majority', { useNewUrlParser: true })
     .catch(e => {
         console.error('Connection error', e.message)
     })
