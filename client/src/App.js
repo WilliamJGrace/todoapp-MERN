@@ -52,10 +52,11 @@ function App() {
   const [todoItems, setTodoItems] = useState(
     null
   )
+  console.log(process.env.NODE_ENV)
 
   var uri = ''
 
-  if (process.env.NODE_ENV !== 'development'){
+  if (process.env.NODE_ENV === 'development'){
     uri = "http://localhost:3000"
   }
   else{
