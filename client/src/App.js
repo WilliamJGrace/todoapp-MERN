@@ -62,6 +62,8 @@ function App() {
     uri = "https://mytodonotes-backend.herokuapp.com"
   }
 
+  console.log(uri)
+
   const fetchTodoItems = () => {
     fetch(uri + "/api/todoitems")
     .then(res => {
