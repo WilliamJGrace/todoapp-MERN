@@ -53,24 +53,22 @@ function App() {
     null
   )
 
-  // var uri = ''
+  var uri = ''
 
-  // if (process.env.NODE_ENV !== 'production'){
-  //   uri = "http://localhost:3000"
-  // }
-  // else{
-  //   uri = "https://mytodonotes-backend.herokuapp.com"
-  // }
+  if (process.env.NODE_ENV !== 'development'){
+    uri = "http://localhost:3000"
+  }
+  else{
+    uri = "https://mytodonotes-backend.herokuapp.com"
+  }
 
-  const fetchTodoItems= () => {
-    const requestOptions = {
-      method: 'GET',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-  };
-    fetch("https://mytodonotes-backend.herokuapp.com/api/todoitems", requestOptions)
-    .then(res => console.log(res.json()))
+  const fetchTodoItems = () => {
+    fetch(uri + "/api/todoitems")
+    .then(res => {
+      return (res.json())
+    })
     .then(data =>{
+      console.log(data)
       setTodoItems(data.data)
       console.log("call")
     }) 
@@ -84,11 +82,11 @@ function App() {
   const addTodoItem = value => {
     const requestOptions = {
       method: 'POST',
-      mode: 'no-cors',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name: value })
   };
-  fetch("https://mytodonotes-backend.herokuapp.com/api/todoitem", requestOptions)
+
+  fetch(uri + "/api/todoitem", requestOptions)
   .then(() => {
     fetchTodoItems()
   }
@@ -103,7 +101,7 @@ function App() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name: name, isCompleted: true })
   };
-  fetch(`https://mytodonotes-backend.herokuapp.com/api/todoitem/${id}`, requestOptions)
+  fetch(`${uri}/api/todoitem/${id}`, requestOptions)
   .then(
     () => {
       fetchTodoItems()
@@ -119,7 +117,7 @@ function App() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name: name, isCompleted: false })
   };
-  fetch(`https://mytodonotes-backend.herokuapp.com/api/todoitem/${id}`, requestOptions)
+  fetch(`${uri}/api/todoitem/${id}`, requestOptions)
   .then(
     () => {
       fetchTodoItems()
@@ -133,7 +131,7 @@ function App() {
     const requestOptions = {
       method: 'DELETE',
   };
-  fetch(`https://mytodonotes-backend.herokuapp.com/api/todoitem/${id}`, requestOptions)
+  fetch(`${uri}/api/todoitem/${id}`, requestOptions)
   .then(
     () => {
       fetchTodoItems()
