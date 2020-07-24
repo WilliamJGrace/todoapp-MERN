@@ -103,7 +103,7 @@ function App() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name: name, isCompleted: true })
   };
-  fetch(`http://localhost:3000/api/todoitem/${id}`, requestOptions)
+  fetch(`https://mytodonotes-backend.herokuapp.com/api/todoitem/${id}`, requestOptions)
   .then(
     () => {
       fetchTodoItems()
@@ -119,7 +119,7 @@ function App() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name: name, isCompleted: false })
   };
-  fetch(`http://localhost:3000/api/todoitem/${id}`, requestOptions)
+  fetch(`https://mytodonotes-backend.herokuapp.com/api/todoitem/${id}`, requestOptions)
   .then(
     () => {
       fetchTodoItems()
@@ -133,7 +133,7 @@ function App() {
     const requestOptions = {
       method: 'DELETE',
   };
-  fetch(`http://localhost:3000/api/todoitem/${id}`, requestOptions)
+  fetch(`https://mytodonotes-backend.herokuapp.com/api/todoitem/${id}`, requestOptions)
   .then(
     () => {
       fetchTodoItems()
