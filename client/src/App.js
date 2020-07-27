@@ -8,7 +8,7 @@ function TodoItem ({ todoItem, index, editTodoItem, completeTodoItem, uncomplete
   const handleSubmit = event => {
     event.preventDefault();
     if(!updateValue) return;
-    editTodoItem(updateValue)
+    editTodoItem(index, updateValue)
     setUpdateValue("")
     setIsUpdating(false)
   }
@@ -22,14 +22,16 @@ function TodoItem ({ todoItem, index, editTodoItem, completeTodoItem, uncomplete
    <div>
    <button onClick={() => setIsUpdating(true)}>Edit</button>
  </div> : 
+ <div>
  <form onSubmit={handleSubmit}>
  <input
    type="text"
    className="input"
-   updateValue={updateValue}
+   value={updateValue}
    onChange={event => setUpdateValue(event.target.value)}
  />
 </form>
+</div>
   
 }
   {todoItem.isCompleted ?
@@ -121,7 +123,20 @@ function App() {
   )
   }
 
-  const editTodoItem = index => {
+  const editTodoItem = (index, updateValue) => {
+    const id = todoItems[index]._id
+    const isCompleted = todoItems[index].isCompleted
+    const requestOptions = {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: updateValue, isCompleted: isCompleted })
+  };
+  fetch(`${uri}/api/todoitem/${id}`, requestOptions)
+  .then(
+    () => {
+      fetchTodoItems()
+    }
+  )
 
   }
 
