@@ -1,12 +1,39 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 
-function TodoItem ({ todoItem, index, completeTodoItem, uncompleteTodoItem, deleteTodoItem }) {
+function TodoItem ({ todoItem, index, editTodoItem, completeTodoItem, uncompleteTodoItem, deleteTodoItem }) {
+  const [isUpdating, setIsUpdating] = useState(false);
+  const [updateValue, setUpdateValue] = useState("");
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    if(!updateValue) return;
+    editTodoItem(index, updateValue)
+    setUpdateValue("")
+    setIsUpdating(false)
+  }
+
   return (
   <div 
   className="todo"
   style={{ textDecoration: todoItem.isCompleted ? "line-through" : "" }}
   >{todoItem.name}
+  {!isUpdating ? 
+   <div>
+   <button onClick={() => setIsUpdating(true)}>Edit</button>
+ </div> : 
+ <div>
+ <form onSubmit={handleSubmit}>
+ <input
+   type="text"
+   className="input"
+   value={updateValue}
+   onChange={event => setUpdateValue(event.target.value)}
+ />
+</form>
+</div>
+  
+}
   {todoItem.isCompleted ?
   <div>
     <button onClick={() => uncompleteTodoItem(index)}>UnComplete</button>
@@ -96,6 +123,23 @@ function App() {
   )
   }
 
+  const editTodoItem = (index, updateValue) => {
+    const id = todoItems[index]._id
+    const isCompleted = todoItems[index].isCompleted
+    const requestOptions = {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: updateValue, isCompleted: isCompleted })
+  };
+  fetch(`${uri}/api/todoitem/${id}`, requestOptions)
+  .then(
+    () => {
+      fetchTodoItems()
+    }
+  )
+
+  }
+
   const completeTodoItem = index => {
     const id = todoItems[index]._id
     const name = todoItems[index].name
@@ -151,6 +195,7 @@ function App() {
             key={index}
             index={index}
             todoItem={todoItem}
+            editTodoItem={editTodoItem}
             completeTodoItem={completeTodoItem}
             uncompleteTodoItem={uncompleteTodoItem}
             deleteTodoItem={deleteTodoItem}
