@@ -6,10 +6,8 @@ import './App.css';
 
 
 function App() {
-  const [todoItems, setTodoItems] = useState(
-    null
-  )
-  console.log(process.env.NODE_ENV)
+  const [todoItems, setTodoItems] = useState(null)
+  const [isLoading, setIsLoading] = useState(true)
 
   let uri = ''
 
@@ -28,7 +26,7 @@ function App() {
       return (res.json())
     })
     .then(data =>{
-      console.log(data)
+      setIsLoading(false)
       setTodoItems(data.data)
       console.log("call")
     }) 
@@ -119,7 +117,10 @@ function App() {
   return (
     <div className="app">
       <div className="todo-list">
-        {todoItems ?
+        {isLoading ?
+        <div className="todo">Loading...</div>
+        :
+        todoItems ?
         todoItems.map((todoItem, index) => (
           <TodoItem
             key={index}
