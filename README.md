@@ -1,7 +1,7 @@
 ## Oh wow, another to do app! Just what the world needs...
 
 
-A Basic Todo CRUD App using MongoDB, Express, React and Node.js
+A Basic Todo CRUD Web Application using MongoDB, Express, React and Node.js
 
 ## Functionality to add
 
