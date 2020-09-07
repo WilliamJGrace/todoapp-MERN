@@ -34,14 +34,13 @@ describe('TodoForm', () => {
         
     });
 
-    // Cannot test the below as unable to access state when using hooks
 
-    // it('should set the value when form filled in', () => {
-    //     wrapperMount
-    //     .find('#nametodo')
-    //     .simulate('change', { target: { value: 'Test' } })
-    //     expect(wrapper.value).toEqual('Test')
-    // })
+    it('should set the value when form filled in', () => {
+        let inputElement = wrapperMount.find('[data-test="inputElement"]')
+        inputElement.simulate('change', { target: { value: 'Test' } })
+        inputElement = wrapperMount.find('[data-test="inputElement"]');
+        expect(inputElement.prop('value')).toEqual('Test')
+    })
 
     it('should call add to item when form submitted', () => {
         wrapperMount

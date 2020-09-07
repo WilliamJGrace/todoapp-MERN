@@ -14,6 +14,7 @@ function TodoForm({ addTodoItem }) {
     return (
       <form onSubmit={handleSubmit}>
         <input id="nametodo"
+        data-test="inputElement"
           type="text"
           className="input"
           value={value}
