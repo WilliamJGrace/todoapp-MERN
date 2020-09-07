@@ -19,11 +19,12 @@ function TodoItem ({ todoItem, index, editTodoItem, completeTodoItem, uncomplete
     >{todoItem.name}
     {!isUpdating ? 
      <div>
-     <button onClick={() => setIsUpdating(true)}>Edit</button>
+     <button id='editbutton' onClick={() => setIsUpdating(true)}>Edit</button>
    </div> : 
    <div>
-   <form onSubmit={handleSubmit}>
+   <form id="editform" onSubmit={handleSubmit}>
    <input
+     id="edittodo"
      type="text"
      className="input"
      value={updateValue}
