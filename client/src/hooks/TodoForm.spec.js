@@ -43,14 +43,11 @@ describe('TodoForm', () => {
     })
 
     it('should call add to item when form submitted', () => {
-        wrapperMount
-        .find('#nametodo')
-        .simulate('change', { target: { value: 'Test' } })
-        wrapperMount
-        .find('form')
-        .simulate('submit')
+        let inputElement = wrapperMount.find('#nametodo')
+        inputElement.simulate('change', { target: { value: 'Test' } })
+        inputElement = wrapperMount.find('form')
+        inputElement.simulate('submit')
         expect(baseProps.addTodoItem).toHaveBeenCalledTimes(1)
-        
     });
     
 });
