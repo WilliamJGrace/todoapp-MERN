@@ -7,8 +7,21 @@ describe('TodoItem', () => {
     let wrapper
     let wrapperMount
 
-    beforeEach(() => wrapper = shallow(<TodoItem />))
+    const baseProps = {
+        todoItem: {isCompleted: false}
+    }
 
-    beforeEach(() => wrapperMount = mount(<TodoItem />))
+    beforeEach(() => wrapper = shallow(<TodoItem 
+    {...baseProps}
+    />))
+
+    beforeEach(() => wrapperMount = mount(<TodoItem 
+    {...baseProps}
+    />))
+
+    it('renders a single div default', () => {
+        expect(wrapper.find('div').length).toEqual(4)
+
+    });
     
 });
