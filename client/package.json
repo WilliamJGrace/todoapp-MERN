@@ -35,5 +35,10 @@
   },
   "engines": {
     "node": "10.16.0"
-}
+  },
+  "devDependencies": {
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.4",
+    "react-test-renderer": "^16.13.1"
+  }
 }
