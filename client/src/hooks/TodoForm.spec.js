@@ -36,9 +36,9 @@ describe('TodoForm', () => {
 
 
     it('should set the value when form filled in', () => {
-        let inputElement = wrapperMount.find('[data-test="inputElement"]')
+        let inputElement = wrapperMount.find('#nametodo')
         inputElement.simulate('change', { target: { value: 'Test' } })
-        inputElement = wrapperMount.find('[data-test="inputElement"]');
+        inputElement = wrapperMount.find('#nametodo');
         expect(inputElement.prop('value')).toEqual('Test')
     })
 
