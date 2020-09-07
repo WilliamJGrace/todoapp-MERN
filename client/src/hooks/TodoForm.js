@@ -13,7 +13,7 @@ function TodoForm({ addTodoItem }) {
     }
     return (
       <form onSubmit={handleSubmit}>
-        <input
+        <input id="nametodo"
           type="text"
           className="input"
           value={value}
