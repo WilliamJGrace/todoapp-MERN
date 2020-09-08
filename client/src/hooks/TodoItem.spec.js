@@ -29,15 +29,12 @@ describe('TodoItem', () => {
     });
 
     it('call edittoitem when user fills in edit form and hits submit', () => {
-        wrapperMount
-        .find('#editbutton')
-        .simulate("click")
-        wrapperMount
-        .find("#edittodo")
-        .simulate('change', { target: { value: 'Test' } })
-        wrapperMount
-        .find("#editform")
-        .simulate('submit')
+        let inputElement = wrapperMount.find('#editbutton')
+        inputElement.simulate('click')
+        inputElement = wrapperMount.find('#edittodo')
+        inputElement.simulate('change', { target: { value: 'Test' } })
+        inputElement = wrapperMount.find('#editform')
+        inputElement.simulate('submit')
         expect(baseProps.editTodoItem).toHaveBeenCalledTimes(1)
     });
     
