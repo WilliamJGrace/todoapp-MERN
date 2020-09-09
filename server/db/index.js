@@ -3,9 +3,11 @@ if (process.env.NODE_ENV !== 'production') {
   }  
 const mongoose = require('mongoose')
 
+const uri = process.env.MONGODB_URL
+
 
 mongoose
-    .connect('mongodb+srv://' + process.env.MONGODB_USERNAME + ':' + process.env.MONGODB_PASSWORD + '@cluster0.obclx.mongodb.net/todoapp?retryWrites=true&w=majority', { useNewUrlParser: true })
+    .connect(uri, { useNewUrlParser: true })
     .then(() => {
         console.log("database connected")
     })
