@@ -3,8 +3,6 @@ if (process.env.NODE_ENV !== 'production') {
   }  
 const mongoose = require('mongoose')
 
-console.log(process.env.MONGODB_USERNAME)
-console.log(process.env.MONGODB_PASSWORD)
 
 mongoose
     .connect('mongodb+srv://' + process.env.MONGODB_USERNAME + ':' + process.env.MONGODB_PASSWORD + '@cluster0.obclx.mongodb.net/todoapp?retryWrites=true&w=majority', { useNewUrlParser: true })
