@@ -1,7 +1,5 @@
-const { model } = require("../db");
 
 const TodoItem = require('../models/todoitem-model');
-const todoitemModel = require("../models/todoitem-model");
 
 
 createTodoItem = (req, res) => {
