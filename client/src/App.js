@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet'
 import TodoForm from './hooks/TodoForm'
 import TodoItem from './hooks/TodoItem'
 import './App.css';
@@ -115,6 +116,10 @@ function App() {
   }
 
   return (
+    <>
+    <Helmet>
+      <title>My Todo Notes</title>
+    </Helmet>
     <div className="app">
       <div className="todo-list">
         {isLoading ?
@@ -139,6 +144,7 @@ function App() {
         <TodoForm addTodoItem={addTodoItem} />
       </div>
     </div>
+    </>
   
   );
 }
