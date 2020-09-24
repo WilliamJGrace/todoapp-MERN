@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { Helmet } from 'react-helmet'
 import TodoList from './hooks/TodoList'
 
@@ -30,7 +30,7 @@ function App() {
     .then(data =>{
     //   setIsLoading(false)
       setTodoLists(data.data)
-      console.log("call")
+      
     }) 
   }
   useEffect(() => {
@@ -48,9 +48,17 @@ function App() {
       <title>My Todo Notes</title>
     </Helmet>
 
+
+
+    {todoLists ?
     <TodoList
+    title={todoLists[0].name}
     uri={uri}
     />
+    : null
+
+    }
+    
     
     </>
   
