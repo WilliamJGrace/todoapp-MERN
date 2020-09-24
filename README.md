@@ -16,7 +16,7 @@ A Basic Todo CRUD Web Application using MongoDB, Express, React and Node.js
 * Add CI/CD
 * User can have multiple todo lists
 * User can name their todo lists
-* User can edit a todo item by double clicking the test
+* User can edit a todo item by double clicking the text
 
 
 [Deployed app on Heroku](https://mytodonotes.herokuapp.com/)
