@@ -11,6 +11,7 @@ A Basic Todo CRUD Web Application using MongoDB, Express, React and Node.js
 * User can edit a todo item &#x2611;
 * User can delete an item &#x2611;
 * Loading message whilst data is fetched from backend &#x2611;
+* Add CI/CD
 * User can have multiple todo lists
 * User can name their todo lists
 * User can edit a todo item by double clicking the test
