@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Helmet } from 'react-helmet'
-import TodoForm from './hooks/TodoForm'
-import TodoItem from './hooks/TodoItem'
+import TodoList from './hooks/TodoList'
+
 import './App.css';
 
 
@@ -30,6 +30,10 @@ function App() {
     <Helmet>
       <title>My Todo Notes</title>
     </Helmet>
+
+    <TodoList
+    uri={uri}
+    />
     
     </>
   
