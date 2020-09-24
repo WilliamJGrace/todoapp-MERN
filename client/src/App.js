@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import { Helmet } from 'react-helmet'
 import TodoList from './hooks/TodoList'
+import TodoListForm from './hooks/TodoListForm'
 
 import './App.css';
 
@@ -38,6 +39,20 @@ function App() {
       fetchTodoLists()
     }
   })
+
+  const createTodoList = value => {
+    const requestOptions = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: value})
+  };
+
+  fetch(uri + "/api/todolist", requestOptions)
+  .then(() => {
+    fetchTodoLists()
+  }
+  )
+  }
   
 
   
@@ -65,6 +80,11 @@ function App() {
     : null
 
     }
+
+    <TodoListForm
+    createTodoList={createTodoList}
+
+    />
 
     </div>
 
