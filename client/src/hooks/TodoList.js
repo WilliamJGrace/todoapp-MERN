@@ -3,7 +3,7 @@ import TodoForm from './TodoForm'
 import TodoItem from './TodoItem'
 
 
-function TodoList({uri}) {
+function TodoList({uri, title}) {
 
     const [todoItems, setTodoItems] = useState(null)
     const [isLoading] = useState(false)
@@ -106,6 +106,7 @@ function TodoList({uri}) {
       return(
         <div className="app">
         <div className="todo-list">
+          <h4>{title}</h4>
           {isLoading ?
           <div className="todo">Loading...</div>
           :
