@@ -3,7 +3,7 @@
 [![Build Status](https://travis-ci.org/WilliamJGrace/todoapp-MERN.svg?branch=master)](https://travis-ci.org/WilliamJGrace/todoapp-MERN)
 
 
-A Basic Todo CRUD Web Application using MongoDB, Express, React and Node.js
+A Full Stack Todo CRUD Web Application using MongoDB, Express, React and Node.js
 
 ## Functionality to add
 
