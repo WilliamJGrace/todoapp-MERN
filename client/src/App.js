@@ -50,14 +50,26 @@ function App() {
 
 
 
+    <div className="app">
     {todoLists ?
-    <TodoList
-    title={todoLists[0].name}
+      todoLists.map((todoList, index) => (
+        <TodoList
+    title={todoList.name}
+    index={index}
     uri={uri}
     />
+
+      ))
+    
     : null
 
     }
+
+    </div>
+
+
+
+  
     
     
     </>

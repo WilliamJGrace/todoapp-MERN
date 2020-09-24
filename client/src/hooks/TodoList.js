@@ -104,7 +104,6 @@ function TodoList({uri, title}) {
 
 
       return(
-        <div className="app">
         <div className="todo-list">
           <h4>{title}</h4>
           {isLoading ?
@@ -128,7 +127,6 @@ function TodoList({uri, title}) {
         }
           <TodoForm addTodoItem={addTodoItem} />
         </div>
-      </div>
       )
 
 
