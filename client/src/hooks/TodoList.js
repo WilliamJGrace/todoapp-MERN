@@ -3,7 +3,7 @@ import TodoForm from './TodoForm'
 import TodoItem from './TodoItem'
 
 
-function TodoList({uri, title}) {
+function TodoList({uri, title, id, index}) {
 
     const [todoItems, setTodoItems] = useState(null)
     const [isLoading] = useState(false)
@@ -14,8 +14,10 @@ function TodoList({uri, title}) {
           return (res.json())
         })
         .then(data =>{
-        //   setIsLoading(false)
-          setTodoItems(data.data)
+          // filtering out other todoitems
+          const todoItemsWithListID = data.data.filter(todoItem => todoItem.todoListID === id)
+          
+          setTodoItems(todoItemsWithListID)
           console.log("call")
         }) 
       }
