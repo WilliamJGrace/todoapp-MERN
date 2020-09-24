@@ -1,5 +1,7 @@
 ## Oh wow, another to do app! Just what the world needs...
 
+[![Build Status](https://travis-ci.org/WilliamJGrace/todoapp-MERN.svg?branch=master)](https://travis-ci.org/WilliamJGrace/todoapp-MERN)
+
 
 A Basic Todo CRUD Web Application using MongoDB, Express, React and Node.js
 
