@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Helmet } from 'react-helmet'
 import TodoList from './hooks/TodoList'
 
@@ -7,7 +7,7 @@ import './App.css';
 
 
 function App() {
-  // const [todoItems, setTodoItems] = useState(null)
+  const [todoLists, setTodoLists] = useState(null)
   // const [isLoading, setIsLoading] = useState(true)
 
   let uri = ''
@@ -21,6 +21,23 @@ function App() {
 
   console.log(uri)
 
+
+  const fetchTodoLists = () => {
+    fetch(uri + "/api/todolists")
+    .then(res => {
+      return (res.json())
+    })
+    .then(data =>{
+    //   setIsLoading(false)
+      setTodoLists(data.data)
+      console.log("call")
+    }) 
+  }
+  useEffect(() => {
+    if(!todoLists){
+      fetchTodoLists()
+    }
+  })
   
 
   
