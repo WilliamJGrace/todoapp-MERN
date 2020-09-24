@@ -51,7 +51,8 @@ getTodoLists = async (req, res) => {
 }
 
 module.exports = {
-    createTodoList
+    createTodoList,
+    getTodoLists
    
 
 }
