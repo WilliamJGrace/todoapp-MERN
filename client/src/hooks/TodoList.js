@@ -31,7 +31,7 @@ function TodoList({uri, title, id, index}) {
         const requestOptions = {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name: value })
+          body: JSON.stringify({ name: value, todoListID: id })
       };
     
       fetch(uri + "/api/todoitem", requestOptions)
