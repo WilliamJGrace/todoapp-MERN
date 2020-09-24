@@ -2,6 +2,7 @@ const express = require('express')
 
 
 const TodoItemCtrl = require('../controllers/todoitem-ctrl')
+const TodoListCtrl = require('../controllers/todolist-ctrl')
 
 const router = express.Router()
 
@@ -10,6 +11,9 @@ router.put('/todoitem/:id', TodoItemCtrl.updateTodoItem)
 router.get('/todoitems', TodoItemCtrl.getTodoItems)
 router.delete('/todoitem/:id', TodoItemCtrl.deleteTodoItem)
 router.get('/todoitem/:id', TodoItemCtrl.getTodoItemById)
+
+router.post('/todolist', TodoListCtrl.createTodoList)
+router.get('/todolists', TodoListCtrl.getTodoLists)
 
 
 module.exports = router

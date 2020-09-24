@@ -3,7 +3,7 @@ import TodoForm from './TodoForm'
 import TodoItem from './TodoItem'
 
 
-function TodoList({uri}) {
+function TodoList({uri, title, id, index}) {
 
     const [todoItems, setTodoItems] = useState(null)
     const [isLoading] = useState(false)
@@ -14,8 +14,10 @@ function TodoList({uri}) {
           return (res.json())
         })
         .then(data =>{
-        //   setIsLoading(false)
-          setTodoItems(data.data)
+          // filtering out other todoitems
+          const todoItemsWithListID = data.data.filter(todoItem => todoItem.todoListID === id)
+          
+          setTodoItems(todoItemsWithListID)
           console.log("call")
         }) 
       }
@@ -29,7 +31,7 @@ function TodoList({uri}) {
         const requestOptions = {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name: value })
+          body: JSON.stringify({ name: value, todoListID: id })
       };
     
       fetch(uri + "/api/todoitem", requestOptions)
@@ -104,8 +106,8 @@ function TodoList({uri}) {
 
 
       return(
-        <div className="app">
         <div className="todo-list">
+          <h4>{title}</h4>
           {isLoading ?
           <div className="todo">Loading...</div>
           :
@@ -127,7 +129,6 @@ function TodoList({uri}) {
         }
           <TodoForm addTodoItem={addTodoItem} />
         </div>
-      </div>
       )
 
 
