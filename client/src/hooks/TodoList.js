@@ -6,7 +6,7 @@ import TodoItem from './TodoItem'
 function TodoList({uri}) {
 
     const [todoItems, setTodoItems] = useState(null)
-    const [isLoading, setIsLoading] = useState(false)
+    const [isLoading] = useState(false)
 
     const fetchTodoItems = () => {
         fetch(uri + "/api/todoitems")
