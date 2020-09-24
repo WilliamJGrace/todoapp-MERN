@@ -7,8 +7,8 @@ import './App.css';
 
 
 function App() {
-  const [todoItems, setTodoItems] = useState(null)
-  const [isLoading, setIsLoading] = useState(true)
+  // const [todoItems, setTodoItems] = useState(null)
+  // const [isLoading, setIsLoading] = useState(true)
 
   let uri = ''
 
@@ -30,30 +30,7 @@ function App() {
     <Helmet>
       <title>My Todo Notes</title>
     </Helmet>
-    <div className="app">
-      <div className="todo-list">
-        {isLoading ?
-        <div className="todo">Loading...</div>
-        :
-        todoItems ?
-        todoItems.map((todoItem, index) => (
-          <TodoItem
-            key={index}
-            index={index}
-            todoItem={todoItem}
-            editTodoItem={editTodoItem}
-            completeTodoItem={completeTodoItem}
-            uncompleteTodoItem={uncompleteTodoItem}
-            deleteTodoItem={deleteTodoItem}
-          />
-        ))
-        :
-        null
-        
-      }
-        <TodoForm addTodoItem={addTodoItem} />
-      </div>
-    </div>
+    
     </>
   
   );

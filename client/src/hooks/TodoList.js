@@ -100,6 +100,34 @@ function TodoList({uri}) {
       }
 
 
+      return(
+        <div className="app">
+        <div className="todo-list">
+          {isLoading ?
+          <div className="todo">Loading...</div>
+          :
+          todoItems ?
+          todoItems.map((todoItem, index) => (
+            <TodoItem
+              key={index}
+              index={index}
+              todoItem={todoItem}
+              editTodoItem={editTodoItem}
+              completeTodoItem={completeTodoItem}
+              uncompleteTodoItem={uncompleteTodoItem}
+              deleteTodoItem={deleteTodoItem}
+            />
+          ))
+          :
+          null
+          
+        }
+          <TodoForm addTodoItem={addTodoItem} />
+        </div>
+      </div>
+      )
+
+
 
 
 
