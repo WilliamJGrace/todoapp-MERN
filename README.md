@@ -15,7 +15,7 @@ A Full Stack Todo CRUD Web Application using MongoDB, Express, React and Node.js
 * Loading message whilst data is fetched from backend &#x2611;
 * Add CI/CD &#x2611;
 * User can have multiple todo lists
-* User can name their todo lists
+* User can name their todo lists &#x2611;
 * User can edit a todo item by double clicking the text
 
 
