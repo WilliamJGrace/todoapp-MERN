@@ -107,7 +107,7 @@ function TodoList({uri, title, id, index}) {
 
       return(
         <div className="todo-list">
-          <h4>{title}</h4>
+          <div className="todo-title">{title}</div>
           {isLoading ?
           <div className="todo">Loading...</div>
           :
