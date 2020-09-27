@@ -14,9 +14,12 @@ A Full Stack Todo CRUD Web Application using MongoDB, Express, React and Node.js
 * User can delete an item &#x2611;
 * Loading message whilst data is fetched from backend &#x2611;
 * Add CI/CD &#x2611;
-* User can have multiple todo lists
-* User can name their todo lists &#x2611;
 * User can edit a todo item by double clicking the text
+
+Functionality added but not yet deployed:
+
+* User can have multiple todo lists &#x2611;
+* User can name their todo lists &#x2611;
 
 
 [Deployed app on Heroku](https://mytodonotes.herokuapp.com/)
