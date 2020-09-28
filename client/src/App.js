@@ -53,6 +53,20 @@ function App() {
   }
   )
   }
+
+  const deleteTodoList = (index) => {
+    const id = todoLists[index]._id
+    const requestOptions = {
+      method: 'DELETE',
+  };
+  fetch(`${uri}/api/todolist/${id}`, requestOptions)
+  .then(
+    () => {
+      fetchTodoLists()
+    }
+  )
+  }
+  
   
 
   
@@ -70,6 +84,7 @@ function App() {
       todoLists.map((todoList, index) => (
         <TodoList
     title={todoList.name}
+    deleteTodoList={deleteTodoList}
     id={todoList._id}
     index={index}
     uri={uri}
