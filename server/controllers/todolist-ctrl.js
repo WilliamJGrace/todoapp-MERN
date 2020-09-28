@@ -50,9 +50,31 @@ getTodoLists = async (req, res) => {
     }).catch(err => {console.log(err)})
 }
 
+deleteTodoList = async (req, res) => {
+    await TodoList.findByIdAndDelete({_id: req.params.id}, (err, todoList) => {
+        if (err){
+            return res.status(400).json({
+                success: false,
+                error: err
+            })
+        }
+        if (!todoList) {
+            return res.status(404).json({
+                success: false, error: 'TodoList not found'
+            })
+        }
+
+        return res.status(200).json({success: true, data: todoList})
+
+
+    }).catch(err => {console.log(err)})
+
+}
+
 module.exports = {
     createTodoList,
-    getTodoLists
+    getTodoLists,
+    deleteTodoList
    
 
 }
