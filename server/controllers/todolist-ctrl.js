@@ -1,5 +1,5 @@
-const todolistModel = require("../models/todolist-model")
 const TodoList = require("../models/todolist-model")
+const TodoItem = require("../models/todoitem-model")
 
 createTodoList = (req, res) => {
 
@@ -50,6 +50,26 @@ getTodoLists = async (req, res) => {
     }).catch(err => {console.log(err)})
 }
 
+deleteTodoItems = async (req, res) => {
+    await TodoItem.deleteMany({todoListID: req.params.id}, (err, todoItems) => {
+        if (err){
+            return res.status(400).json({
+                success: false,
+                error: err
+            })
+        }
+        if (!todoItems) {
+            return res.status(404).json({
+                success: false, error: 'Todoitems related to list not found'
+            })
+        }
+
+        // return res.status(200).json({success: true, data: todoItems})
+
+    }).catch(err => {console.log(err)})
+}
+
+
 deleteTodoList = async (req, res) => {
     await TodoList.findByIdAndDelete({_id: req.params.id}, (err, todoList) => {
         if (err){
@@ -64,12 +84,14 @@ deleteTodoList = async (req, res) => {
             })
         }
 
-        return res.status(200).json({success: true, data: todoList})
+        // return res.status(200).json({success: true, data: todoList})
 
 
     }).catch(err => {console.log(err)})
-
+    .then(() => deleteTodoItems(req, res))
+   
 }
+
 
 module.exports = {
     createTodoList,
