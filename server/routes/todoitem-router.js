@@ -14,6 +14,7 @@ router.get('/todoitem/:id', TodoItemCtrl.getTodoItemById)
 
 router.post('/todolist', TodoListCtrl.createTodoList)
 router.get('/todolists', TodoListCtrl.getTodoLists)
+router.delete('/todolist/:id', TodoListCtrl.deleteTodoList)
 
 
 module.exports = router
