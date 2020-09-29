@@ -7,11 +7,21 @@ import TodoListForm from './hooks/TodoListForm'
 
 import './App.css';
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  todoList: {
+    
+  },
+}));
+
 
 
 function App() {
   const [todoLists, setTodoLists] = useState(null)
   // const [isLoading, setIsLoading] = useState(true)
+  const classes = useStyles();
 
   let uri = ''
 
@@ -71,14 +81,9 @@ function App() {
   }
 
 
-  const useStyles = makeStyles((theme) => ({
-    root: {
-      flexGrow: 1,
-    },
-    todoList: {
-      
-    },
-  }));
+
+
+  
   
   
 
@@ -93,8 +98,10 @@ function App() {
 
 
     <div className="app">
+      <Grid container justify="center" className={classes.root} spacing={2}>
     {todoLists ?
       todoLists.map((todoList, index) => (
+        <Grid>
         <TodoList
     title={todoList.name}
     deleteTodoList={deleteTodoList}
@@ -102,12 +109,14 @@ function App() {
     index={index}
     uri={uri}
     />
+      </Grid>
 
       ))
     
     : null
 
     }
+    </Grid>
 
     <TodoListForm
     createTodoList={createTodoList}
