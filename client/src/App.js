@@ -12,6 +12,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   todoList: {
+    margin: 'auto'
     
   },
 }));
@@ -98,10 +99,10 @@ function App() {
 
 
     <div className="app">
-      <Grid container justify="center" className={classes.root} spacing={2}>
+      <Grid container spacing={5} justify="center" className={classes.root} >
     {todoLists ?
       todoLists.map((todoList, index) => (
-        <Grid>
+        <Grid className={classes.todoList} spacing={5}>
         <TodoList
     title={todoList.name}
     deleteTodoList={deleteTodoList}
