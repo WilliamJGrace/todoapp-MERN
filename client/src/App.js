@@ -12,7 +12,9 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
   todoList: {
-    margin: 'auto'
+    margin: 'auto',
+    width: '400px'
+    
     
   },
 }));
