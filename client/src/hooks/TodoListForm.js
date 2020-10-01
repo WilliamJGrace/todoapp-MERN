@@ -20,6 +20,7 @@ function TodoListForm({ createTodoList }) {
           type="text"
           className="input"
           value={value}
+          placeholder="New list name"
           onChange={event => setValue(event.target.value)}
         />
       </form>
