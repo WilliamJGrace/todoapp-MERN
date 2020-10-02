@@ -108,9 +108,8 @@ function TodoList({uri, title, id, deleteTodoList, index}) {
       return(
         <div className="todo-list">
           <div className="todo-title">
-            {title}
-            <button id='deletelist' onClick={() => deleteTodoList(index)}>Delete</button>
-
+            <div className="todo-title-name">{title}</div>
+            <button className='delete-listing-btn' onClick={() => deleteTodoList(index)}>Delete</button>
           </div>
 
           {isLoading ?
