@@ -14,6 +14,13 @@ createTodoList = (req, res) => {
 
     const todoList = new TodoList(body)
 
+    if (!todoList) {
+        return res.status(400).json({
+            success: false,
+            error: err
+        })
+    }
+
     todoList
     .save()
     .then(() => {
@@ -25,6 +32,12 @@ createTodoList = (req, res) => {
 
     }
     )
+    .catch(error => {
+        return res.status(400).json({
+            error,
+            message: 'Todolist not created!'
+        })
+    })
 
 
 
@@ -78,6 +91,7 @@ deleteTodoList = async (req, res) => {
                 error: err
             })
         }
+        console.log(todoList)
         if (!todoList) {
             return res.status(404).json({
                 success: false, error: 'TodoList not found'
@@ -88,7 +102,7 @@ deleteTodoList = async (req, res) => {
 
 
     }).catch(err => {console.log(err)})
-    .then(() => deleteTodoItems(req, res))
+    .then(() => deleteTodoItems(req, res)).then(() => res.status(200).json({success: true}))
    
 }
 
