@@ -22,7 +22,7 @@ A user can now add multiple lists!
 * Loading message whilst data is fetched from backend &#x2611;
 * Add CI/CD &#x2611;
 * User can edit a todo item by double clicking the text
-* User can delete a todoList &#x2611;
+* User can delete a todoList - Needs fixing!
 * User can have multiple todo lists &#x2611;
 * User can name their todo lists &#x2611;
 * User can edit the name of their todo list 
