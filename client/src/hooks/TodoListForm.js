@@ -13,13 +13,13 @@ function TodoListForm({ createTodoList }) {
     }
     return (
         <>
-        <p>New List:</p>
       <form onSubmit={handleSubmit}>
         <input id="nametodo"
         data-test="inputElement"
           type="text"
           className="input"
           value={value}
+          placeholder="New list name"
           onChange={event => setValue(event.target.value)}
         />
       </form>

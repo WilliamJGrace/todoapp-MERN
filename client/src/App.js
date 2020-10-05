@@ -1,15 +1,31 @@
 import React, {useState, useEffect} from 'react';
 import { Helmet } from 'react-helmet'
+import Grid from '@material-ui/core/Grid';
+import { makeStyles } from '@material-ui/core/styles';
 import TodoList from './hooks/TodoList'
 import TodoListForm from './hooks/TodoListForm'
 
 import './App.css';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  todoList: {
+    marginTop: '20px',
+ 
+    width: '400px',
+    
+    
+  },
+}));
 
 
 
 function App() {
   const [todoLists, setTodoLists] = useState(null)
   // const [isLoading, setIsLoading] = useState(true)
+  const classes = useStyles();
 
   let uri = ''
 
@@ -21,6 +37,7 @@ function App() {
   }
 
   console.log(uri)
+
 
 
   const fetchTodoLists = () => {
@@ -66,6 +83,11 @@ function App() {
     }
   )
   }
+
+
+
+
+  
   
   
 
@@ -80,8 +102,10 @@ function App() {
 
 
     <div className="app">
+      <Grid container spacing={5} alignItems="flex-start" className={classes.root} >
     {todoLists ?
       todoLists.map((todoList, index) => (
+        <Grid className={classes.todoList} spacing={5} xs={12} md={6} lg={4}>
         <TodoList
     title={todoList.name}
     deleteTodoList={deleteTodoList}
@@ -89,6 +113,7 @@ function App() {
     index={index}
     uri={uri}
     />
+      </Grid>
 
       ))
     
@@ -96,10 +121,18 @@ function App() {
 
     }
 
+    <Grid className={classes.todoList} spacing={5} xs={12} md={6} lg={4}>
+      <div className="todo-list">
     <TodoListForm
     createTodoList={createTodoList}
 
     />
+    </div>
+    </Grid>
+    
+    </Grid>
+
+    
 
     </div>
 
