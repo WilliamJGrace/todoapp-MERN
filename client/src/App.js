@@ -41,11 +41,8 @@ function App() {
 
 
   const fetchTodoLists = () => {
-    const requestOptions = {
-      method: 'GET',
-      headers: { 'Content-Type': 'application/json' },
-  };
-    fetch(uri + "/api/todolists", requestOptions)
+    
+    fetch(uri + "/api/todolists")
     .then(res => {
       return (res.json())
     })
