@@ -13,7 +13,6 @@ function TodoListForm({ createTodoList }) {
     }
     return (
         <>
-        <p>New List:</p>
       <form onSubmit={handleSubmit}>
         <input id="nametodo"
         data-test="inputElement"
