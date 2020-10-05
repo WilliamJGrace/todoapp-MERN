@@ -13,8 +13,7 @@ const useStyles = makeStyles((theme) => ({
   },
   todoList: {
     marginTop: '20px',
-    marginBottom: 'auto',
-    marginRight: 'auto',
+ 
     width: '400px',
     
     
@@ -103,10 +102,10 @@ function App() {
 
 
     <div className="app">
-      <Grid container spacing={5} justify="center" className={classes.root} >
+      <Grid container spacing={5} alignItems="flex-start" className={classes.root} >
     {todoLists ?
       todoLists.map((todoList, index) => (
-        <Grid className={classes.todoList} spacing={5}>
+        <Grid className={classes.todoList} spacing={5} xs={12} md={6} lg={4}>
         <TodoList
     title={todoList.name}
     deleteTodoList={deleteTodoList}
@@ -122,7 +121,7 @@ function App() {
 
     }
 
-    <Grid className={classes.todoList}>
+    <Grid className={classes.todoList} spacing={5} xs={12} md={6} lg={4}>
       <div className="todo-list">
     <TodoListForm
     createTodoList={createTodoList}
