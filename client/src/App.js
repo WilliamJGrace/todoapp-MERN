@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
 
 function App() {
   const [todoLists, setTodoLists] = useState(null)
-  // const [isLoading, setIsLoading] = useState(true)
+  const [isLoadingLists, setIsLoadingLists] = useState(true)
   const classes = useStyles();
 
   let uri = ''
@@ -47,7 +47,7 @@ function App() {
       return (res.json())
     })
     .then(data =>{
-    //   setIsLoading(false)
+      setIsLoadingLists(false)
       setTodoLists(data.data)
       
     }) 
@@ -103,8 +103,16 @@ function App() {
 
 
     <div className="app">
+   
+
       <Grid container spacing={5} alignItems="flex-start" className={classes.root} >
-    {todoLists ?
+      {isLoadingLists ?
+          <Grid className={classes.todoList}>
+           <div className="todo">Loading...</div>
+          </Grid>
+     :
+    todoLists ?
+     
       todoLists.map((todoList, index) => (
         <Grid className={classes.todoList} spacing={5} xs={12} md={6} lg={4}>
         <TodoList
