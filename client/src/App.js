@@ -110,7 +110,9 @@ function App() {
 
           <Grid className={classes.todoList}>
             <div className="todo-list">
-               <div className="todo">Loading...</div>
+               <div className="todo">
+                 <div className="loading">Loading</div>
+               </div>
             </div>
           </Grid>
      :
