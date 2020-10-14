@@ -26,7 +26,6 @@ A user can now add multiple lists!
 * User can have multiple todo lists &#x2611;
 * User can name their todo lists &#x2611;
 * User can edit the name of their todo list 
-* User greeted with loading message whilst lists and items load
 
 
 [Deployed app on Heroku](https://mytodonotes.herokuapp.com/)
