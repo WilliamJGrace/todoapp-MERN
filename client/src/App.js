@@ -107,8 +107,11 @@ function App() {
 
       <Grid container spacing={5} alignItems="flex-start" className={classes.root} >
       {isLoadingLists ?
+
           <Grid className={classes.todoList}>
-           <div className="todo">Loading...</div>
+            <div className="todo-list">
+               <div className="todo">Loading...</div>
+            </div>
           </Grid>
      :
     todoLists ?
