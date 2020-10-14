@@ -130,6 +130,8 @@ function App() {
 
     }
 
+{!isLoadingLists ?
+
     <Grid className={classes.todoList} spacing={5} xs={12} md={6} lg={4}>
       <div className="todo-list">
     <TodoListForm
@@ -138,6 +140,8 @@ function App() {
     />
     </div>
     </Grid>
+
+    : null}
     
     </Grid>
 
